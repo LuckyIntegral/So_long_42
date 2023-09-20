@@ -5,48 +5,45 @@
 #                                                     +:+ +:+         +:+      #
 #    By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/09/04 18:41:29 by vfrants           #+#    #+#              #
-#    Updated: 2023/09/11 15:26:14 by vfrants          ###   ########.fr        #
+#    Created: 2023/08/23 20:10:51 by vfrants           #+#    #+#              #
+#    Updated: 2023/09/19 22:08:36 by vfrants          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		= cc
 CFLAGS	= -Wall -Wextra -Werror
-NAME	= libft.a
+NAME	= libftprintf.a
 
-SRCS	= \
-		ft_memset.c ft_bzero.c ft_memcpy.c ft_striteri.c ft_memmove.c \
-		ft_memchr.c ft_memcmp.c ft_strlen.c ft_strlcpy.c ft_strlcat.c \
-		ft_strchr.c ft_strrchr.c ft_strnstr.c ft_strncmp.c ft_atoi.c \
-		ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
-		ft_toupper.c ft_tolower.c ft_calloc.c ft_strdup.c ft_substr.c \
-		ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c \
-		ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
-		ft_math_s.c ft_math_i.c ft_str_util.c
+LIBDIR	= ./libft
+LIBFT	= ${LIBDIR}/libft.a
 
-SRCS_B	= \
-		ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
-		ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
+SRCS	= ft_pf_vac.c ft_pf_vaid.c ft_pf_vap.c ft_pf_vas.c ft_pf_vau.c \
+		ft_pf_vax.c ft_pf_vaxx.c ft_pf_utils.c ft_printf.c
 
 OBJS	= ${SRCS:.c=.o}
 
-OBJS_B	= ${SRCS_B:.c=.o}
-
 %.o		: %.c
-		${CC} ${CFLAGS} -c $< -o $@ -I .
+		${CC} ${CFLAGS} -o $@ -c $< -I .
 
-${NAME}	: ${OBJS}
-		ar -rc $@ ${OBJS}
+${NAME}	: ${LIBFT} ${OBJS}
+		cp ${LIBFT} ${NAME}
+		ar -rcs $@ ${OBJS}
 
-bonus	: ${OBJS_B}
-		ar -rc ${NAME} ${OBJS_B}
+${LIBFT}:
+		make -C $(LIBDIR) all
 
 all		: ${NAME}
 
+bonus	: all
+
 clean	:
+		make -C ${LIBDIR} clean
 		rm -f ${OBJS} ${OBJS_B}
 
 fclean	: clean
+		make -C ${LIBDIR} fclean
 		rm -f ${NAME}
 
-re		: fclean ${NAME}
+re		: fclean all
+
+.PHONY: all, clean, fclean, bonus, re
