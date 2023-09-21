@@ -6,12 +6,13 @@
 #    By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 13:47:23 by vfrants           #+#    #+#              #
-#    Updated: 2023/09/20 15:44:26 by vfrants          ###   ########.fr        #
+#    Updated: 2023/09/21 17:44:54 by vfrants          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		= cc
 CFLAGS	= -Wall -Wextra -Werror
+LINKS	= -lmlx -lXext -lX11
 NAME	= so_long
 
 LIBDIR	= ./libft
@@ -19,7 +20,9 @@ LIBFT	= ${LIBDIR}/libftprintf.a
 
 INC		= ./inc
 
-SRCS	= ---
+SRCS	= sl_error.c sl_map_utils.c sl_map_validation.c sl_map.c \
+		sl_utils_general.c \
+		main.c
 
 OBJS	= ${SRCS:.c=.o}
 
