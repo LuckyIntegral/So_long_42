@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sl_error.c                                         :+:      :+:    :+:   */
+/*   ft_contains.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/20 19:12:03 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/21 21:19:59 by vfrants          ###   ########.fr       */
+/*   Created: 2023/09/21 22:24:12 by vfrants           #+#    #+#             */
+/*   Updated: 2023/09/21 22:24:21 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/sl_errors.h"
-#include "inc/so_long.h"
+#include "libft.h"
 
-void	sl_error_handler(int status)
+int	ft_contains(char *set, char c)
 {
-	ft_printf("EXIT, STATUS CODE --- %d ---", status);
-	exit(status);
+	if (!set)
+		return (0);
+	while (*set)
+	{
+		if (*set == c)
+			return (1);
+		set++;
+	}
+	return (0);
 }

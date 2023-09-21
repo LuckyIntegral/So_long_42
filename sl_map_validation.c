@@ -6,13 +6,14 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:46:20 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/21 17:38:48 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/09/21 22:34:31 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "inc/so_long.h"
+#include "inc/so_long.h"
+#include "inc/sl_errors.h"
 
-static int is_valid_border(t_map *map)
+static int	is_valid_border(t_map *map)
 {
 	int	i;
 
@@ -41,7 +42,7 @@ static int	is_valid_size(t_map *map)
 		return (0);
 	if (map->width * map->height / map->height != map->width)
 		return (0);
-	if (map->width * map->height != ft_strlen(map->map))
+	if (map->width * map->height != (int)ft_strlen(map->map))
 		return (0);
 	return (1);
 }
@@ -56,11 +57,8 @@ static int	are_valid_chars_only(t_map *map)
 	{
 		col = 1;
 		while (col < map->width - 1)
-		{
-			if (!sl_contains(MAP_ELEMENTS, map->map((row * map->width) + col)))
+			if (!ft_contains(MAP_ELEMENTS, map->map[row * map->width + col++]))
 				return (0);
-			col++;
-		}
 		row++;
 	}
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 13:50:22 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/21 17:41:37 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/09/21 22:34:11 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 
 typedef struct s_map // map size
 {
-	size_t	width;
-	size_t	height;
+	int		width;
+	int		height;
 	char	*map;
 }	t_map;
 
@@ -42,13 +42,11 @@ typedef struct s_map // map size
 void	sl_error_handler(int status);
 
 // map pack
-char	*sl_init_map(char *file);
+t_map	*sl_init_map(char *file);
 void	sl_free_map(t_map *map);
 void	sl_validate_map(t_map *map);
 
 // util pack
-int		sl_contains(const char *str, char c);
 int		sl_endwith(char *str, char *end);
-
 
 #endif

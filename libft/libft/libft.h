@@ -6,7 +6,7 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:33:31 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/20 18:41:00 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/09/21 22:37:19 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define MAX_FD_NUMBER 1024
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+# ifndef GNL_BUFFER
+#  define GNL_BUFFER 10
 # endif
 
 typedef struct s_list
@@ -94,8 +92,10 @@ size_t		ft_abs(int a);
 const char	*ft_tr_nul(const char *condition, const char *t, const char *f);
 void		*ft_tr_str(int condition, void *t, void *f);
 
-// Get next line
+// another project 42
 
 char		*get_next_line(int fd);
+
+int			ft_contains(char *set, char c); // cant get used to different name:)
 
 #endif

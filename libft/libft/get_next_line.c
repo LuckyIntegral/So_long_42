@@ -6,7 +6,7 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 12:07:09 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/21 19:10:48 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/09/21 22:37:35 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char	*ft_get_rough_line(char *buffer, int fd)
 	char	*tempo;
 	int		size;
 
-	tempo = (char *)malloc(sizeof (char) * (BUFFER_SIZE + 1));
+	tempo = (char *)malloc(sizeof (char) * (GNL_BUFFER + 1));
 	if (!tempo)
 	{
 		if (buffer)
@@ -52,12 +52,12 @@ static char	*ft_get_rough_line(char *buffer, int fd)
 	size = 1;
 	while (size > 0)
 	{
-		size = read(fd, tempo, BUFFER_SIZE);
+		size = read(fd, tempo, GNL_BUFFER);
 		if (size < 0)
 			return (free(tempo), free(buffer), NULL);
 		tempo[size] = '\0';
 		buffer = ft_strjoiner(buffer, tempo);
-		if (!buffer || ft_strchr(buffer, '\n'))
+		if (!buffer || ft_contains(buffer, '\n'))
 			break ;
 	}
 	free(tempo);
@@ -112,12 +112,12 @@ static char	*ft_get_rest(char *str, size_t offset)
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer[MAX_FD_NUMBER];
+	static char	*buffer[10];
 	char		*str;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || GNL_BUFFER <= 0)
 		return (NULL);
-	if (buffer[fd] && !ft_strchr(buffer[fd], '\n'))
+	if (!ft_contains(buffer[fd], '\n'))
 		buffer[fd] = ft_get_rough_line(buffer[fd], fd);
 	if (!buffer[fd])
 		return (NULL);

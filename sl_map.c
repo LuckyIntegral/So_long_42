@@ -6,14 +6,14 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 19:03:11 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/21 16:39:59 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/09/21 23:04:20 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/sl_errors.h"
 #include "inc/so_long.h"
 
-static void failed_malloc(char *str, t_map *map, int fd)
+static void	failed_malloc(char *str, t_map *map, int fd)
 {
 	close(fd);
 	free(str);
@@ -37,10 +37,10 @@ static void	map_cat(t_map *map, char *buffer, int fd)
 	}
 	else
 	{
-		res = ft_strjoin(map->map, buffer);
+		res = ft_strdup(buffer);
 		if (!res)
 			failed_malloc(buffer, map, fd);
-		map->map = ft_buffer;
+		map->map = res;
 	}
 }
 
@@ -48,22 +48,26 @@ static t_map	*parse_map(int fd)
 {
 	t_map	*map;
 	char	*buffer;
-	char	*temp;
+	char	*trimmed;
 
-	map = (t_map)malloc(sizeof(t_map));
+	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
 		return (NULL);
 	buffer = get_next_line(fd);
 	if (!buffer)
 		return (free(map), NULL);
-	map->width = ft_strlen(buffer);
+	map->width = ft_strlen(buffer) - 1;
 	map->height = 1;
 	while (buffer)
 	{
-		if (ft_strlen(buffer) != map->width)
+		trimmed = ft_strtrim(buffer, "\n");
+		if (!trimmed)
 			failed_malloc(buffer, map, fd);
-		map_cat(map, buffer, fd);
 		free(buffer);
+		if ((int)ft_strlen(trimmed) != map->width)
+			failed_malloc(trimmed, map, fd);
+		map_cat(map, trimmed, fd);
+		free(trimmed);
 		buffer = get_next_line(fd);
 	}
 	return (map);
@@ -72,7 +76,6 @@ static t_map	*parse_map(int fd)
 t_map	*sl_init_map(char *file)
 {
 	t_map	*map;
-	int 	status;
 	int		fd;
 
 	fd = open(file, O_RDONLY);
