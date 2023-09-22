@@ -6,7 +6,7 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 19:03:11 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/21 23:04:20 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/09/23 00:54:21 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static void	map_cat(t_map *map, char *buffer, int fd)
 			failed_malloc(buffer, map, fd);
 		map->map = res;
 	}
+	map->height++;
 }
 
 static t_map	*parse_map(int fd)
@@ -57,7 +58,7 @@ static t_map	*parse_map(int fd)
 	if (!buffer)
 		return (free(map), NULL);
 	map->width = ft_strlen(buffer) - 1;
-	map->height = 1;
+	map->height = 0;
 	while (buffer)
 	{
 		trimmed = ft_strtrim(buffer, "\n");
@@ -87,4 +88,12 @@ t_map	*sl_init_map(char *file)
 		sl_error_handler(MALLOC_FAIL);
 	sl_validate_map(map);
 	return (map);
+}
+
+void	sl_free_map(t_map *map)
+{
+	if (map && map->map)
+		free(map->map);
+	if (map)
+		free(map);
 }

@@ -6,7 +6,7 @@
 #    By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 13:47:23 by vfrants           #+#    #+#              #
-#    Updated: 2023/09/21 21:18:22 by vfrants          ###   ########.fr        #
+#    Updated: 2023/09/23 01:13:52 by vfrants          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,17 +20,17 @@ LIBFT	= ${LIBDIR}/libftprintf.a
 
 INC		= ./inc
 
-SRCS	= sl_error.c sl_map_utils.c sl_map_validation.c sl_map.c \
+SRCS	= sl_error.c sl_map_validation.c sl_map.c \
 		sl_utils_general.c \
 		main.c
 
 OBJS	= ${SRCS:.c=.o}
 
 %.o		: %.c
-		${CC} ${CFLAGS} -o $@ -c $< -I .
+		${CC} -g ${CFLAGS} -o $@ -c $< -I .
 
 ${NAME}	: ${LIBFT} ${OBJS}
-		${CC} -o $@ ${OBJS} -L . ./libft/libftprintf.a
+		${CC} -g -o $@ ${OBJS} -L . ./libft/libftprintf.a
 
 ${LIBFT}:
 		make -C $(LIBDIR) all

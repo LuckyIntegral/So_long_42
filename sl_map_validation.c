@@ -6,7 +6,7 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:46:20 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/21 22:34:31 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/09/23 01:23:04 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,27 @@ static int	are_valid_chars_only(t_map *map)
 {
 	int	row;
 	int	col;
+	int	cep[3];
 
-	row = 1;
+	(free(NULL), row = 1, cep[0] = 0, cep[1] = 0, cep[2] = 0);
 	while (row < map->height - 1)
 	{
-		col = 1;
-		while (col < map->width - 1)
-			if (!ft_contains(MAP_ELEMENTS, map->map[row * map->width + col++]))
+		col = 0;
+		while (col++ < map->width - 2)
+		{
+			if (!ft_contains(MAP_ELEMENTS, map->map[row * map->width + col]))
 				return (0);
+			else if (map->map[row * map->width + col] == 'C')
+				cep[0]++;
+			else if (map->map[row * map->width + col] == 'E')
+				cep[1]++;
+			else if (map->map[row * map->width + col] == 'P')
+				cep[2]++;
+		}
 		row++;
 	}
+	if (cep[0] < 1 || cep[1] != 1 || cep[2] != 1)
+		return (0);
 	return (1);
 }
 
@@ -81,4 +92,9 @@ void	sl_validate_map(t_map *map)
 		sl_free_map(map);
 		sl_error_handler(INVALID_MAP);
 	}
+	// if (!is_solution_exist(map))
+	// {
+	// 	sl_free_map(map);
+	// 	sl_error_handler(INVALID_MAP);
+	// }
 }
