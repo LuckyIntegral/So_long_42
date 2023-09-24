@@ -6,7 +6,7 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:46:20 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/23 01:23:04 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/09/23 18:54:37 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ static int	are_valid_chars_only(t_map *map)
 	int	col;
 	int	cep[3];
 
-	(free(NULL), row = 1, cep[0] = 0, cep[1] = 0, cep[2] = 0);
+	row = 1;
+	ft_bzero(&cep, sizeof (int) * 3);
 	while (row < map->height - 1)
 	{
 		col = 0;
@@ -92,9 +93,9 @@ void	sl_validate_map(t_map *map)
 		sl_free_map(map);
 		sl_error_handler(INVALID_MAP);
 	}
-	// if (!is_solution_exist(map))
-	// {
-	// 	sl_free_map(map);
-	// 	sl_error_handler(INVALID_MAP);
-	// }
+	if (!sl_does_solution_exist(map))
+	{
+		sl_free_map(map);
+		sl_error_handler(INVALID_MAP);
+	}
 }

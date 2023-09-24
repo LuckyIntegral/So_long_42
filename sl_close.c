@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sl_errors.h                                        :+:      :+:    :+:   */
+/*   sl_close.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/23 18:58:30 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/23 18:59:37 by vfrants          ###   ########.fr       */
+/*   Created: 2023/09/24 22:19:27 by vfrants           #+#    #+#             */
+/*   Updated: 2023/09/24 22:24:55 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SL_ERRORS_H
-# define SL_ERRORS_H
+#include "inc/so_long.h"
 
-# define MALLOC_FAIL 1
-# define INVALID_MAP 2
-# define INVALID_MAP_PATH 3
-# define CLOSE_FAIL 4
-# define INVALID_MAP_EXTENSION 5
-# define MISSED_ARGUMENT 6
+void	sl_exit_succsess(t_data *data, int moves)
+{
+	sl_free_mlx(data);
+	ft_printf("Congrats, you have passed my mini-game!");
+	ft_printf("Your final score is %d moves", moves);
+	exit(0);
+}
 
-#endif
+void	sl_exit_escape(t_data *data)
+{
+	sl_free_mlx(data);
+	exit(0);
+}
