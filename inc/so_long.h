@@ -6,7 +6,7 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 13:50:22 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/24 22:38:33 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/09/25 16:48:13 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,8 @@ void	sl_init_mlx_struct(t_data *data);
 // close
 void	sl_exit_succsess(t_data *data, int moves);
 void	sl_exit_escape(t_data *data);
+
+// delete later
+void	sl_put_map(t_data *data);
 
 #endif

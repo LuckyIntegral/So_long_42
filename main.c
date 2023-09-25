@@ -6,39 +6,19 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:38:47 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/24 22:46:45 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/09/25 22:53:13 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/so_long.h"
 #include "inc/sl_errors.h"
 
-static void	sl_put_map(t_data *data)
-{
-	int	row;
-	int	col;
-
-	row = 0;
-	while (row < data->map->height)
-	{
-		col = 0;
-		while (col < data->map->width)
-		{
-			ft_printf("%c", get_by_xy(data, col, row));
-			col++;
-		}
-		ft_printf("\n");
-		row++;
-	}
-	ft_printf("\n");
-}
-
 static int	sl_mlx_map(t_map *map)
 {
 	t_data	data;
 
-	sl_init_mlx_struct(&data);
 	data.map = map;
+	sl_init_mlx_struct(&data);
 	data.mlx_ptr = mlx_init();
 	if (!data.mlx_ptr)
 		(sl_free_map(map), sl_error_handler(MALLOC_FAIL));
@@ -47,6 +27,7 @@ static int	sl_mlx_map(t_map *map)
 		(sl_free_mlx(&data), sl_error_handler(MALLOC_FAIL));
 	mlx_key_hook(data.mlx_window, &sl_move_controller, &data);
 	sl_put_map(&data);
+	// mlx_loop_hook(data.mlx_ptr, foo, NULL);
 	mlx_loop(data.mlx_ptr);
 	sl_free_mlx(&data);
 	return (0);

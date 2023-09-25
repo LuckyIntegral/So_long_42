@@ -6,7 +6,7 @@
 #    By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 13:47:23 by vfrants           #+#    #+#              #
-#    Updated: 2023/09/24 22:38:16 by vfrants          ###   ########.fr        #
+#    Updated: 2023/09/25 22:31:54 by vfrants          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ OBJS	= ${SRCS:.c=.o}
 		${CC} -g ${CFLAGS} -o $@ -c $< -I .
 
 ${NAME}	: ${LIBFT} ${OBJS}
-		${CC} -lmlx -lXext -lX11 -lm -o $@ ${OBJS} -L . ./libft/libftprintf.a
+		${CC} -lmlx -lXext -lX11 -o $@ ${OBJS} -L . ./libft/libftprintf.a
 
 ${LIBFT}:
 		make -C $(LIBDIR) all
@@ -38,7 +38,8 @@ ${LIBFT}:
 all		: ${NAME}
 
 debug	: fclean ${LIBFT} ${OBJS}
-		${CC} -g -lmlx -lXext -lX11 -lm -o $@ ${OBJS} -L . ./libft/libftprintf.a
+		${CC} -g -lmlx -lXext -lX11 -o $@ ${OBJS} -L . ./libft/libftprintf.a
+		lldb ./debug maps/test.ber
 
 clean	:
 		make -C ${LIBDIR} clean

@@ -6,7 +6,7 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 20:25:14 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/24 23:01:44 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/09/25 23:12:38 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,12 @@
 
 static int	left(t_data *data)
 {
-	if (get_by_xy(data, data->sprite.x - 1, data->sprite.y) == MAP_WALL)
-		return (1);
-	set_by_xy(data, data->sprite.x, data->sprite.y, MAP_SPACE);
-	if (get_by_xy(data, data->sprite.x - 1, data->sprite.y) == MAP_COLL)
-		data->colls--;
-	set_by_xy(data, data->sprite.x - 1, data->sprite.y, MAP_PLAYER);
-	data->sprite.x--;
-	return (0);
-}
-
-static int	right(t_data *data)
-{
-	if (get_by_xy(data, data->sprite.x + 1, data->sprite.y) == MAP_WALL)
-		return (1);
-	set_by_xy(data, data->sprite.x, data->sprite.y, MAP_SPACE);
-	if (get_by_xy(data, data->sprite.x + 1, data->sprite.y) == MAP_COLL)
-		data->colls--;
-	set_by_xy(data, data->sprite.x + 1, data->sprite.y, MAP_PLAYER);
-	data->sprite.x++;
-	return (0);
-}
-
-static int	up(t_data *data)
-{
 	if (get_by_xy(data, data->sprite.x, data->sprite.y - 1) == MAP_WALL)
 		return (1);
-	set_by_xy(data, data->sprite.x, data->sprite.y, MAP_SPACE);
+	if (data->sprite.x == data->exit.x && data->sprite.y == data->exit.y)
+		set_by_xy(data, data->sprite.x, data->sprite.y, MAP_EXIT);
+	else
+		set_by_xy(data, data->sprite.x, data->sprite.y, MAP_SPACE);
 	if (get_by_xy(data, data->sprite.x, data->sprite.y - 1) == MAP_COLL)
 		data->colls--;
 	set_by_xy(data, data->sprite.x, data->sprite.y - 1, MAP_PLAYER);
@@ -48,11 +27,14 @@ static int	up(t_data *data)
 	return (0);
 }
 
-static int	down(t_data *data)
+static int	right(t_data *data)
 {
 	if (get_by_xy(data, data->sprite.x, data->sprite.y + 1) == MAP_WALL)
 		return (1);
-	set_by_xy(data, data->sprite.x, data->sprite.y, MAP_SPACE);
+	if (data->sprite.x == data->exit.x && data->sprite.y == data->exit.y)
+		set_by_xy(data, data->sprite.x, data->sprite.y, MAP_EXIT);
+	else
+		set_by_xy(data, data->sprite.x, data->sprite.y, MAP_SPACE);
 	if (get_by_xy(data, data->sprite.x, data->sprite.y + 1) == MAP_COLL)
 		data->colls--;
 	set_by_xy(data, data->sprite.x, data->sprite.y + 1, MAP_PLAYER);
@@ -60,7 +42,37 @@ static int	down(t_data *data)
 	return (0);
 }
 
-static void	sl_put_map(t_data *data)
+static int	up(t_data *data)
+{
+	if (get_by_xy(data, data->sprite.x - 1, data->sprite.y) == MAP_WALL)
+		return (1);
+	if (data->sprite.x == data->exit.x && data->sprite.y == data->exit.y)
+		set_by_xy(data, data->sprite.x, data->sprite.y, MAP_EXIT);
+	else
+		set_by_xy(data, data->sprite.x, data->sprite.y, MAP_SPACE);
+	if (get_by_xy(data, data->sprite.x - 1, data->sprite.y) == MAP_COLL)
+		data->colls--;
+	set_by_xy(data, data->sprite.x - 1, data->sprite.y, MAP_PLAYER);
+	data->sprite.x--;
+	return (0);
+}
+
+static int	down(t_data *data)
+{
+	if (get_by_xy(data, data->sprite.x + 1, data->sprite.y) == MAP_WALL)
+		return (1);
+	if (data->sprite.x == data->exit.x && data->sprite.y == data->exit.y)
+		set_by_xy(data, data->sprite.x, data->sprite.y, MAP_EXIT);
+	else
+		set_by_xy(data, data->sprite.x, data->sprite.y, MAP_SPACE);
+	if (get_by_xy(data, data->sprite.x + 1, data->sprite.y) == MAP_COLL)
+		data->colls--;
+	set_by_xy(data, data->sprite.x + 1, data->sprite.y, MAP_PLAYER);
+	data->sprite.x++;
+	return (0);
+}
+
+void	sl_put_map(t_data *data)
 {
 	int	row;
 	int	col;
@@ -101,7 +113,8 @@ int	sl_move_controller(int key, t_data *data)
 		ft_printf("Moves: %d, colected = %d\n", ++moves, data->colls);
 		sl_put_map(data);
 	}
-	if (get_by_xy(data, data->sprite.x, data->sprite.y) == MAP_EXIT)
+	if (data->sprite.x == data->exit.x && data->sprite.y == data->exit.y
+		&& !data->colls)
 		sl_exit_succsess(data, moves);
 	return (0);
 }

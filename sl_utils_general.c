@@ -6,7 +6,7 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:01:21 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/24 22:39:46 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/09/25 17:12:56 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	sl_init_mlx_struct(t_data *data)
 
 	data->mlx_ptr = NULL;
 	data->mlx_window = NULL;
-	get_element_xy(data->map, 'P', &data->sprite.x, &data->sprite.y);
-	get_element_xy(data->map, 'E', &data->exit.x, &data->exit.y);
+	get_element_xy(data->map, MAP_PLAYER, &(data->sprite.x), &(data->sprite.y));
+	get_element_xy(data->map, MAP_EXIT, &(data->exit.x), &(data->exit.y));
 	data->colls = 0;
 	row = 1;
 	while (row < data->map->height - 1)

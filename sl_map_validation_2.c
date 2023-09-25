@@ -6,7 +6,7 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 01:23:06 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/24 21:40:07 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/09/25 23:01:43 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static void	check_ceil(char *checked, int x, int y, t_map *map)
 {
-	if (map->map[y * map->width + x] == MAP_WALL)
+	if (map->map[(x * map->width) + y] == MAP_WALL)
 		return ;
 	if (checked[((y - 1) * (map->width - 2)) + (x - 1)])
 		return ;
@@ -39,8 +39,8 @@ void	get_element_xy(t_map *map, char search, int *x, int *y)
 		{
 			if (map->map[row * map->width + col] == search)
 			{
-				*x = col;
-				*y = row;
+				*x = row;
+				*y = col;
 				return ;
 			}
 			col++;
@@ -55,7 +55,8 @@ int	sl_does_solution_exist(t_map *map)
 	int		x;
 	int		y;
 
-	checked = (char *)ft_calloc(sizeof (char), map->width * map->height);
+	checked = (char *)ft_calloc(sizeof (char),
+			(map->width - 2) * (map->height - 2));
 	if (!checked)
 	{
 		sl_free_map(map);
