@@ -6,7 +6,7 @@
 #    By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 13:47:23 by vfrants           #+#    #+#              #
-#    Updated: 2023/09/25 22:31:54 by vfrants          ###   ########.fr        #
+#    Updated: 2023/09/27 23:22:16 by vfrants          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,15 +14,23 @@ CC		= cc
 CFLAGS	= -Wall -Wextra -Werror
 LINKS	= -lmlx -lXext -lX11
 NAME	= so_long
+SRCDIR	= ./mandatory/src
 
 LIBDIR	= ./libft
 LIBFT	= ${LIBDIR}/libftprintf.a
 
-INC		= ./inc
+INC		= ./mandatory/inc
 
-SRCS	= sl_error.c sl_map_validation.c sl_map_validation_2.c sl_map.c \
-		sl_utils_general.c sl_close.c sl_moves.c \
-		main.c
+SRCS	= ${SRCDIR}/sl_error.c \
+		${SRCDIR}/sl_map_validation.c \
+		${SRCDIR}/sl_map_validation_2.c \
+		${SRCDIR}/sl_map.c \
+		${SRCDIR}/sl_utils_general.c \
+		${SRCDIR}/sl_close.c \
+		${SRCDIR}/sl_moves.c \
+		${SRCDIR}/sl_images.c \
+		${SRCDIR}/sl_display.c \
+		${SRCDIR}/main.c
 
 OBJS	= ${SRCS:.c=.o}
 
@@ -39,7 +47,6 @@ all		: ${NAME}
 
 debug	: fclean ${LIBFT} ${OBJS}
 		${CC} -g -lmlx -lXext -lX11 -o $@ ${OBJS} -L . ./libft/libftprintf.a
-		lldb ./debug maps/test.ber
 
 clean	:
 		make -C ${LIBDIR} clean

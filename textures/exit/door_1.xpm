@@ -74,3 +74,12 @@ static char *bigger[] = {
 "@@$$$$$$$$$$OOOOOOooOO  ++****************  ooOOOOOO$$$$$$$$$$@@",
 "@@@@@@@@@@@@OOOOOOooOOOO                  OOooOOOOOO@@@@@@@@@@@@",
 "@@@@@@@@@@@@OOOOOOooOOOO                  OOooOOOOOO@@@@@@@@@@@@",
+"@@==========%%%%**ooOOOOOOooOOOOOOOOooOOOOOOooOOOOOO==========@@",
+"@@==========%%%%**ooOOOOOOooOOOOOOOOooOOOOOOooOOOOOO==========@@",
+"@@$$$$$$$$$$%%****ooOOOOOOooOOOOOOOOooOOOOOOooOOOOOO$$$$$$$$$$@@",
+"@@$$$$$$$$$$%%****ooOOOOOOooOOOOOOOOooOOOOOOooOOOOOO$$$$$$$$$$@@",
+"@@$$$$$$$$$$OOOOOOooOOOOOOooOOOOOOOOooOOOOOOooOOOOOO$$$$$$$$$$@@",
+"@@$$$$$$$$$$OOOOOOooOOOOOOooOOOOOOOOooOOOOOOooOOOOOO$$$$$$$$$$@@",
+"@@$$$$$$$$$$######oo######oo########oo######oo######$$$$$$$$$$@@",
+"@@$$$$$$$$$$######oo######oo########oo######oo######$$$$$$$$$$@@"
+};
