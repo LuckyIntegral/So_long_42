@@ -6,7 +6,7 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:38:47 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/28 19:58:47 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/09/28 20:36:22 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static int	sl_mlx_map(t_map *map)
 	sl_init_images(&data);
 	mlx_key_hook(data.mlx_window, &sl_move_controller, &data);
 	mlx_loop_hook(data.mlx_ptr, sl_display_map, &data);
+	mlx_hook(data.mlx_window, 17, 0L, sl_exit, &data);
 	mlx_loop(data.mlx_ptr);
 	sl_free_mlx(&data);
 	return (0);

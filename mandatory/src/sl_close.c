@@ -6,7 +6,7 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 22:19:27 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/27 23:24:46 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/09/28 20:35:57 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	sl_exit_succsess(t_data *data, int moves)
 	exit(0);
 }
 
-void	sl_exit_escape(t_data *data)
+int	sl_exit(t_data *data)
 {
 	sl_free_mlx(data);
 	exit(0);

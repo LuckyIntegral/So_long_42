@@ -6,7 +6,7 @@
 #    By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 13:47:23 by vfrants           #+#    #+#              #
-#    Updated: 2023/09/28 18:37:55 by vfrants          ###   ########.fr        #
+#    Updated: 2023/09/28 20:19:26 by vfrants          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ OBJS	= ${SRCS:.c=.o}
 		${CC} -g ${CFLAGS} -o $@ -c $< -I .
 
 ${NAME}	: ${LIBFT} ${OBJS}
-		${CC} -lmlx -lXext -lX11 -o $@ ${OBJS} -L . ./libft/libftprintf.a
+		${CC} ${LINKS} -o $@ ${OBJS} -L . ./libft/libftprintf.a
 
 ${LIBFT}:
 		make -C $(LIBDIR) all
@@ -46,7 +46,7 @@ ${LIBFT}:
 all		: ${NAME}
 
 debug	: fclean ${LIBFT} ${OBJS}
-		${CC} -g -lmlx -lXext -lX11 -o $@ ${OBJS} -L . ./libft/libftprintf.a
+		${CC} -g ${LINKS} -o $@ ${OBJS} -L . ./libft/libftprintf.a
 
 clean	:
 		make -C ${LIBDIR} clean

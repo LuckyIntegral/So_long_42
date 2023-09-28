@@ -6,7 +6,7 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 20:25:14 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/27 23:25:22 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/09/28 20:36:30 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	sl_move_controller(int key, t_data *data)
 	int			status;
 
 	if (key == ESCAPE)
-		sl_exit_escape(data);
+		sl_exit(data);
 	status = -1;
 	if (key == M_RIGHT)
 		status = right(data);
