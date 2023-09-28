@@ -6,7 +6,7 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 13:50:22 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/28 19:37:16 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/09/28 20:00:10 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@
 # define M_DOWN 115
 # define ESCAPE 65307
 
+	// void *enemy[6];
 typedef struct s_images // collect all images together
 {
-	void *coll[3];
-	void *empty;
-	// void *enemy[6];
-	void *exit[2];
-	void *sprite[6];
-	void *wall;
+	void	*coll[3];
+	void	*empty;
+	void	*exit[2];
+	void	*sprite[6];
+	void	*wall;
 }	t_images;
 
 typedef struct s_point // just to make the code more readable
@@ -104,6 +104,6 @@ void	sl_exit_escape(t_data *data);
 void	sl_init_images(t_data *data);
 
 // finally display on a screen
-int	sl_display_map(t_data *data);
+int		sl_display_map(t_data *data);
 
 #endif

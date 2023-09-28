@@ -6,7 +6,7 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 23:18:13 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/28 19:39:10 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/09/28 19:58:22 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ static void	put_image(t_data *data, int timing, int row, int col)
 
 int	sl_display_map(t_data *data)
 {
-	static int i = 0;
-	int		col;
-	int		row;
+	static int	i = 0;
+	int			col;
+	int			row;
 
 	col = 0;
 	while (col < data->map->width)
