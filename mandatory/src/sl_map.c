@@ -6,7 +6,7 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 19:03:11 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/27 23:25:18 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/09/28 19:16:57 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static t_map	*parse_map(int fd)
 	char	*buffer;
 	char	*trimmed;
 
-	map = (t_map *)malloc(sizeof(t_map));
+	map = (t_map *)ft_calloc(sizeof(t_map), 1);
 	if (!map)
 		return (NULL);
 	buffer = get_next_line(fd);
@@ -92,7 +92,7 @@ t_map	*sl_init_map(char *file)
 
 void	sl_free_map(t_map *map)
 {
-	if (map && map->map)
+	if (map->map)
 		free(map->map);
 	if (map)
 		free(map);

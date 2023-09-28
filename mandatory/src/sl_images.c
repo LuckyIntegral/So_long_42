@@ -6,7 +6,7 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:41:39 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/27 23:25:03 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/09/28 19:41:23 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,18 +85,16 @@ static void	failed_image(t_data *data)
 	sl_error_handler(WRONG_TEXTURE_PATH);
 }
 
-t_images	sl_init_images(t_data *data)
+void	sl_init_images(t_data *data)
 {
-	t_images	images;
 	int			x;
 	int			y;
 
 	x = 64;
 	y = 64;
-	sl_set_all_null(&images);
-	if (init_coll_empty_exit(data->mlx_ptr, &images, &x, &y))
+	sl_set_all_null(&data->images);
+	if (init_coll_empty_exit(data->mlx_ptr, &(data->images), &x, &y))
 		failed_image(data);
-	if (init_sprite_wall(data->mlx_ptr, &images, &x, &y))
+	if (init_sprite_wall(data->mlx_ptr, &(data->images), &x, &y))
 		failed_image(data);
-	return (images);
 }

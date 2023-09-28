@@ -6,7 +6,7 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:01:21 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/27 23:25:25 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/09/28 19:51:44 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,24 @@ char	get_by_xy(t_data *data, int x, int y)
 
 void	sl_free_mlx(t_data *data)
 {
+	int	i;
+
+	i = -1;
+	while (++i < 3)
+		if (data->images.coll[i])
+			mlx_destroy_image(data->mlx_ptr, data->images.coll[i]);
+	i = -1;
+	while (++i < 2)
+		if (data->images.exit[i])
+			mlx_destroy_image(data->mlx_ptr, data->images.exit[i]);
+	i = -1;
+	while (++i < 6)
+		if (data->images.sprite[i])
+			mlx_destroy_image(data->mlx_ptr, data->images.sprite[i]);
+	if (data->images.wall)
+		mlx_destroy_image(data->mlx_ptr, data->images.wall);
+	if (data->images.empty)
+		mlx_destroy_image(data->mlx_ptr, data->images.empty);
 	sl_free_map(data->map);
 	if (data->mlx_window)
 		mlx_destroy_window(data->mlx_ptr, data->mlx_window);

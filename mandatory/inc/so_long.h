@@ -6,7 +6,7 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 13:50:22 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/27 23:25:52 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/09/28 19:37:16 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,11 +100,8 @@ void	sl_init_mlx_struct(t_data *data);
 void	sl_exit_succsess(t_data *data, int moves);
 void	sl_exit_escape(t_data *data);
 
-// delete later
-void	sl_put_map(t_data *data);
-
 // helper for image initialization
-t_images	sl_init_images(t_data *data);
+void	sl_init_images(t_data *data);
 
 // finally display on a screen
 int	sl_display_map(t_data *data);
