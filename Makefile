@@ -6,22 +6,22 @@
 #    By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 13:47:23 by vfrants           #+#    #+#              #
-#    Updated: 2023/09/30 19:56:03 by vfrants          ###   ########.fr        #
+#    Updated: 2023/10/01 00:58:20 by vfrants          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
 LINKS		= -lmlx -lXext -lX11
+
 NAME		= so_long
-BONUS_NAME	= so_long_bonus
+NAME_B		= so_long_bonus
+
 SRCDIR		= ./mandatory/src
-BONUS_SRC	= ./bonus/src
+SRCDIR_B	= ./bonus/src
 
 LIBDIR		= ./libft
 LIBFT		= ${LIBDIR}/libftprintf.a
-
-INC			= ./mandatory/inc
 
 SRCS		= ${SRCDIR}/sl_error.c \
 			${SRCDIR}/sl_map_validation.c \
@@ -34,46 +34,46 @@ SRCS		= ${SRCDIR}/sl_error.c \
 			${SRCDIR}/sl_display.c \
 			${SRCDIR}/main.c
 
-BONUS_SRCS	= ${BONUS_SRC}/sl_map_validation_bonus.c \
-			${BONUS_SRC}/sl_map_validation_2_bonus.c \
-			${BONUS_SRC}/sl_map_bonus.c \
-			${BONUS_SRC}/sl_utils_general_bonus.c \
-			${BONUS_SRC}/sl_close_bonus.c \
-			${BONUS_SRC}/sl_moves_bonus.c \
-			${BONUS_SRC}/sl_images_bonus.c \
-			${BONUS_SRC}/sl_display_bonus.c \
-			${BONUS_SRC}/main_bonus.c
+SRCS_B		= ${SRCDIR_B}/sl_map_validation_bonus.c \
+			${SRCDIR_B}/sl_map_validation_2_bonus.c \
+			${SRCDIR_B}/sl_map_bonus.c \
+			${SRCDIR_B}/sl_utils_general_bonus.c \
+			${SRCDIR_B}/sl_close_bonus.c \
+			${SRCDIR_B}/sl_moves_bonus.c \
+			${SRCDIR_B}/sl_images_bonus.c \
+			${SRCDIR_B}/sl_display_bonus.c \
+			${SRCDIR_B}/main_bonus.c
 
 OBJS		= ${SRCS:.c=.o}
 
-BONUS_OBJS	= ${BONUS_SRCS:.c=.o}
+OBJS_B	= ${SRCS_B:.c=.o}
 
 %.o		: %.c
-		${CC} ${CFLAGS} -o $@ -c $< -I .
+		${CC} -g ${CFLAGS} ${CFLAGS} -o $@ -c $< -I .
 
 ${NAME}	: ${LIBFT} ${OBJS}
 		${CC} ${LINKS} -o $@ ${OBJS} -L . ./libft/libftprintf.a
 
-${LIBFT}:
-		make -C $(LIBDIR) all
-
 all		: ${NAME}
 
-bonus	: ${LIBFT} ${BONUS_OBJS}
-		${CC} ${LINKS} -o ${BONUS_NAME} ${BONUS_OBJS} -L . ./libft/libftprintf.a
+${NAME_B}	: ${LIBFT} ${OBJS_B}
+		${CC} ${LINKS} -o $@ ${OBJS_B} -L . ./libft/libftprintf.a
+
+bonus	: ${NAME_B}
+
+${LIBFT}:
+		make -C $(LIBDIR) all
 
 clean	:
 		make -C ${LIBDIR} clean
 		rm -f ${OBJS} ${OBJS_B}
-		rm -f ${BONUS_OBJS} ${OBJS_B}
 
 fclean	: clean
 		make -C ${LIBDIR} fclean
-		rm -f ${NAME}
-		rm -f ${BONUS_NAME}
-		rm -f debug
+		rm -f ${NAME} ${NAME_B}
 
 re		: fclean all
 
-.PHONY: all, clean, fclean, bonus, re
-# .SILENT
+reb		: fclean bonus
+
+.PHONY: all, bonus, clean, fclean, re
