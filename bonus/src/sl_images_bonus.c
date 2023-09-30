@@ -6,7 +6,7 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:41:39 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/30 18:30:53 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/10/01 01:04:52 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ static void	sl_set_all_null(t_images *images)
 	i = 0;
 	while (i < 6)
 		images->sprite[i++] = NULL;
+	i = 0;
+	while (i < 6)
+		images->enemy[i++] = NULL;
 	images->empty = NULL;
 	images->wall = NULL;
 }

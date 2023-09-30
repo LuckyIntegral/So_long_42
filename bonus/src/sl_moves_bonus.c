@@ -6,7 +6,7 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 20:25:14 by vfrants           #+#    #+#             */
-/*   Updated: 2023/10/01 00:02:51 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/10/01 01:09:04 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ static int	down(t_data *data)
 
 int	sl_move_controller(int key, t_data *data)
 {
-	static int	moves = 0;
 	int			status;
 
 	if (key == ESCAPE)
@@ -105,6 +104,6 @@ int	sl_move_controller(int key, t_data *data)
 	}
 	if (data->sprite.x == data->exit.x && data->sprite.y == data->exit.y
 		&& !data->colls)
-		sl_exit_succsess(data, moves);
+		sl_exit_succsess(data, data->moves);
 	return (0);
 }
