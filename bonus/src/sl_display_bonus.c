@@ -6,7 +6,7 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 23:18:13 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/30 18:37:13 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/10/01 00:05:05 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	sl_init_mlx_struct(t_data *data)
 
 	data->mlx_ptr = NULL;
 	data->mlx_window = NULL;
+	data->moves = 0;
 	get_element_xy(data->map, MAP_PLAYER, &(data->sprite.x), &(data->sprite.y));
 	get_element_xy(data->map, MAP_EXIT, &(data->exit.x), &(data->exit.y));
 	data->colls = 0;
@@ -36,6 +37,22 @@ void	sl_init_mlx_struct(t_data *data)
 		}
 		row++;
 	}
+}
+
+void	put_moves(t_data *data, int nbr, int color)
+{
+	char	*number;
+
+	number = ft_itoa(nbr);
+	if (!number)
+	{
+		sl_free_mlx(data);
+		sl_error_handler(MALLOC_FAIL);
+	}
+	mlx_string_put(data->mlx_ptr, data->mlx_window,
+		data->map->width * IMAGE_SIZE / 2 - (ft_strlen(number) / 2),
+		data->map->height * IMAGE_SIZE + IMAGE_SIZE / 2, color, number);
+	free(number);
 }
 
 static void	put_image(t_data *data, int timing, int row, int col)

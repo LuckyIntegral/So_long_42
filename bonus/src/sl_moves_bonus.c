@@ -6,7 +6,7 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 20:25:14 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/30 18:55:00 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/10/01 00:02:51 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,10 @@ int	sl_move_controller(int key, t_data *data)
 	if (status == 2)
 		sl_touch_enemy(data);
 	if (status == 0)
-		ft_printf("Moves: %d\n", ++moves);
+	{
+		put_moves(data, data->moves++, 0x000000);
+		put_moves(data, data->moves, 0x888888);
+	}
 	if (data->sprite.x == data->exit.x && data->sprite.y == data->exit.y
 		&& !data->colls)
 		sl_exit_succsess(data, moves);

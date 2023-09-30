@@ -6,7 +6,7 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 18:11:42 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/30 18:11:50 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/09/30 23:07:32 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	sl_mlx_map(t_map *map)
 	if (!data.mlx_ptr)
 		(free(map), sl_error_handler(MALLOC_FAIL));
 	data.mlx_window = mlx_new_window(data.mlx_ptr,
-			map->width * IMAGE_SIZE, map->height * IMAGE_SIZE, "So Long");
+			map->width * IMAGE_SIZE, (map->height + 1) * IMAGE_SIZE, "So Long");
 	if (!data.mlx_window)
 		(sl_free_map(map), sl_error_handler(MALLOC_FAIL));
 	sl_init_images(&data);

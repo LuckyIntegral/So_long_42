@@ -6,7 +6,7 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:33:31 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/21 22:37:19 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/09/30 22:57:16 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,9 @@ void		ft_lstadd_back(t_list **lst, t_list *new);
 int			ft_lstsize(t_list *lst);
 
 // Custom functions
+char		*get_next_line(int fd);
 
+// Ternarnary functions
 int			ft_tr(int condition, int t, int f);
 int			ft_max(int a, int b);
 int			ft_min(int a, int b);
@@ -92,9 +94,8 @@ size_t		ft_abs(int a);
 const char	*ft_tr_nul(const char *condition, const char *t, const char *f);
 void		*ft_tr_str(int condition, void *t, void *f);
 
-// another project 42
-
-char		*get_next_line(int fd);
+// String utils
+char		*ft_strcat(const char *s1, const char *s2);
 
 int			ft_contains(char *set, char c); // cant get used to different name:)
 

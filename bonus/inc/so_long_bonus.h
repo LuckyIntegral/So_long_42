@@ -6,7 +6,7 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 18:13:28 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/30 18:40:24 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/10/01 00:01:39 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_data // instead of thousands variables
 	t_point		sprite;
 	t_point		exit;
 	int			colls;
+	int			moves;
 	t_images	images;
 }	t_data;
 
@@ -110,6 +111,7 @@ int		sl_exit(t_data *data);
 void	sl_init_images(t_data *data);
 
 // finally display on a screen
+void	put_moves(t_data *data, int nbr, int color);
 int		sl_display_map(t_data *data);
 
 #endif
