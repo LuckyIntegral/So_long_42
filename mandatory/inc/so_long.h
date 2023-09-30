@@ -6,7 +6,7 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 13:50:22 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/28 20:36:40 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/09/30 17:59:28 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@
 # define M_UP 119
 # define M_DOWN 115
 # define ESCAPE 65307
+
+// Image extention
+# define IMAGE_SIZE 32
 
 	// void *enemy[6];
 typedef struct s_images // collect all images together

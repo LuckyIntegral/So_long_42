@@ -6,7 +6,7 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 23:18:13 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/28 19:58:22 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/09/30 18:00:11 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	put_image(t_data *data, int timing, int row, int col)
 	else
 		template = data->images.empty;
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_window, template,
-		col * 64, row * 64);
+		col * IMAGE_SIZE, row * IMAGE_SIZE);
 }
 
 int	sl_display_map(t_data *data)

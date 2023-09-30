@@ -6,7 +6,7 @@
 /*   By: vfrants <vfrants@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 20:25:14 by vfrants           #+#    #+#             */
-/*   Updated: 2023/09/28 20:36:30 by vfrants          ###   ########.fr       */
+/*   Updated: 2023/09/30 18:05:47 by vfrants          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ static int	left(t_data *data)
 {
 	if (get_by_xy(data, data->sprite.x, data->sprite.y - 1) == MAP_WALL)
 		return (1);
-	if (data->sprite.x == data->exit.x && data->sprite.y == data->exit.y)
-		set_by_xy(data, data->sprite.x, data->sprite.y, MAP_EXIT);
-	else
-		set_by_xy(data, data->sprite.x, data->sprite.y, MAP_SPACE);
+	if (data->sprite.x == data->exit.x && data->sprite.y - 1 == data->exit.y
+		&& data->colls)
+		return (1);
+	set_by_xy(data, data->sprite.x, data->sprite.y, MAP_SPACE);
 	if (get_by_xy(data, data->sprite.x, data->sprite.y - 1) == MAP_COLL)
 		data->colls--;
 	set_by_xy(data, data->sprite.x, data->sprite.y - 1, MAP_PLAYER);
@@ -31,10 +31,10 @@ static int	right(t_data *data)
 {
 	if (get_by_xy(data, data->sprite.x, data->sprite.y + 1) == MAP_WALL)
 		return (1);
-	if (data->sprite.x == data->exit.x && data->sprite.y == data->exit.y)
-		set_by_xy(data, data->sprite.x, data->sprite.y, MAP_EXIT);
-	else
-		set_by_xy(data, data->sprite.x, data->sprite.y, MAP_SPACE);
+	if (data->sprite.x == data->exit.x && data->sprite.y + 1 == data->exit.y
+		&& data->colls)
+		return (1);
+	set_by_xy(data, data->sprite.x, data->sprite.y, MAP_SPACE);
 	if (get_by_xy(data, data->sprite.x, data->sprite.y + 1) == MAP_COLL)
 		data->colls--;
 	set_by_xy(data, data->sprite.x, data->sprite.y + 1, MAP_PLAYER);
@@ -46,10 +46,10 @@ static int	up(t_data *data)
 {
 	if (get_by_xy(data, data->sprite.x - 1, data->sprite.y) == MAP_WALL)
 		return (1);
-	if (data->sprite.x == data->exit.x && data->sprite.y == data->exit.y)
-		set_by_xy(data, data->sprite.x, data->sprite.y, MAP_EXIT);
-	else
-		set_by_xy(data, data->sprite.x, data->sprite.y, MAP_SPACE);
+	if (data->sprite.x - 1 == data->exit.x && data->sprite.y == data->exit.y
+		&& data->colls)
+		return (1);
+	set_by_xy(data, data->sprite.x, data->sprite.y, MAP_SPACE);
 	if (get_by_xy(data, data->sprite.x - 1, data->sprite.y) == MAP_COLL)
 		data->colls--;
 	set_by_xy(data, data->sprite.x - 1, data->sprite.y, MAP_PLAYER);
@@ -61,10 +61,10 @@ static int	down(t_data *data)
 {
 	if (get_by_xy(data, data->sprite.x + 1, data->sprite.y) == MAP_WALL)
 		return (1);
-	if (data->sprite.x == data->exit.x && data->sprite.y == data->exit.y)
-		set_by_xy(data, data->sprite.x, data->sprite.y, MAP_EXIT);
-	else
-		set_by_xy(data, data->sprite.x, data->sprite.y, MAP_SPACE);
+	if (data->sprite.x + 1 == data->exit.x && data->sprite.y == data->exit.y
+		&& data->colls)
+		return (1);
+	set_by_xy(data, data->sprite.x, data->sprite.y, MAP_SPACE);
 	if (get_by_xy(data, data->sprite.x + 1, data->sprite.y) == MAP_COLL)
 		data->colls--;
 	set_by_xy(data, data->sprite.x + 1, data->sprite.y, MAP_PLAYER);
